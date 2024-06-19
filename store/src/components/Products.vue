@@ -23,4 +23,8 @@ const productsList = computed(() => {
 	}
 	return [];
 })
+const props = defineProps({
+	products: Object
+})
+
 </script>

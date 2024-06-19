@@ -1,11 +1,11 @@
 <template>
-	<div class="p-5">
+	<div class="p-5 ">
 		<div v-if="productDoc">
 			<h1 class=" font-black text-gray-900 text-3xl">
 				{{ productDoc.name }}
 			</h1>
 
-			<div class="sm:flex sm:gap-6">
+			<div class="sm:flex  sm:gap-6">
 				<!-- Image Carousel -->
 				<div class="flex gap-3 flex-col w-fit mt-5">
 					<div
@@ -24,22 +24,36 @@
 					</div>
 				</div>
 
+				<div>
+					
+				</div>
+
 				<!-- Current Preview Image -->
 				<img class=" sm:max-w-lg" :src="currentPreviewImageURL">
+				<div class=" float-right">
+					<div class="prose prose-sm py-3 mt-4 " v-html="md.render(productDoc.description)"></div>
+					<div class="space-y-3 ">
+						<p class="text-3xl font-bold text-gray-900">{{ formatCurrency(productDoc.price, productDoc.currency) }}</p>
+		
+						<Button @click="addProductToCart" variant="solid" size="2xl">
+							<template #prefix>
+								<FeatherIcon class="h-5" name="shopping-cart" />
+							</template>
+							Add to cart
+						</Button>
+				</div>
+				
+
+				
 			</div>
+			
 
-			<div class="prose prose-sm" v-html="md.render(productDoc.description)"></div>
-
-			<div class="space-y-3">
-				<p class="text-3xl font-bold text-gray-900">{{ formatCurrency(productDoc.price, productDoc.currency) }}</p>
-
-				<Button @click="addProductToCart" variant="solid" size="2xl">
-					<template #prefix>
-						<FeatherIcon class="h-5" name="shopping-cart" />
-					</template>
-					Add to cart
-				</Button>
 			</div>
+			
+
+			
+
+			
 		</div>
 	</div>
 </template>
