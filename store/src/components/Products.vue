@@ -1,7 +1,11 @@
 <template>
-  <h2 class="my-4 font-semibold text-lg">Our Products</h2>
+	<div class=" flex justify-between items-center p-2 border-b border-gray-400 mt-40 mb-8">
+		<h2 class=" font-semibold text-lg border-b-2 border-blue-700">Our Products</h2>
+		<h2>View All ></h2>
+	</div>
+  
 
-  <div class="mt-4 grid grid-cols-1 sm:grid-cols-4 gap-3" v-if="productsList">
+  <div class="mt-4 grid grid-cols-1 sm:grid-cols-5 gap-3" v-if="productsList">
 	<ProductCard v-for="product in productsList" :key="product.name" :product="product" />
   </div>
 </template>

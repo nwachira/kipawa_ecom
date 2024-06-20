@@ -4,7 +4,7 @@
 		params: {
 			name: product.name
 		}
-	}" class="shadow-md rounded-sm p-4 space-y-2 flex items-start justify-between flex-col" >
+	}" class="shadow-md rounded-2xl p-4 space-y-2 flex items-start justify-between flex-col" >
 		<div>
 			<img :src="product.preview_image" alt="Product Preview Image">
 			<p class="text-base text-gray-800 font-medium mt-2">{{ product.name }}</p>
