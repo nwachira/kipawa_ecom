@@ -5,12 +5,11 @@
             params: {
                 name: product.name
             }
-        }" class="flex-grow">
+        }">
             <div>
                 <img :src="product.preview_image" alt="Product Preview Image">
                 <p class="text-base text-gray-800 font-medium mt-2">{{ product.name }}</p>
             </div>
-            <p class="text-xl font-bold text-gray-900">{{ formatCurrency(product.price, product.currency) }}</p>
         </router-link>
         <Button @click="addProductToCart" variant="solid" size="2xl">
             <template #prefix>
@@ -20,20 +19,15 @@
         </Button>
     </div>
 </template>
-
 <script setup>
+import {Button, FeatherIcon} from "frappe-ui";
 import { formatCurrency } from "@/utils";
-import { Button, createDocumentResource, FeatherIcon } from "frappe-ui";
 import markdownit from 'markdown-it'
 import { useToast } from "vue-toastification";
 import { computed, watch, ref, inject } from "vue";
-import { defineProps } from "vue";
 import { useRoute } from "vue-router";
 
 
-const props = defineProps({
-	product: Object
-})
 
 const route = useRoute();
 const toast = useToast();
@@ -42,6 +36,11 @@ const cart = inject("cart");
 
 const md = markdownit()
 const cartDialogShown = ref(false);
+
+
+const props = defineProps({
+    product: Object
+})
 
 function addProductToCart() {
 	const productName = route.params.name;
@@ -52,4 +51,6 @@ function addProductToCart() {
 	})
 	toast.success("Item added to cart!")
 }
+
+// Add your addProductToCart function here
 </script>

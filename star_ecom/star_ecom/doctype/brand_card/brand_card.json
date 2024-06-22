@@ -15,9 +15,10 @@
  "fields": [
   {
    "fieldname": "brand",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Brand"
+   "label": "Brand",
+   "options": "Item"
   },
   {
    "fieldname": "column_break_xlec",
@@ -42,7 +43,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-20 18:53:52.104774",
+ "modified": "2024-06-21 16:41:35.071972",
  "modified_by": "Administrator",
  "module": "Star Ecom",
  "name": "Brand Card",

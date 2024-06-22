@@ -57,12 +57,13 @@
    "fieldname": "preview_image",
    "fieldtype": "Attach Image",
    "label": "Preview Image",
+   "options": "website_item",
    "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-19 11:05:49.732857",
+ "modified": "2024-06-22 17:21:52.882996",
  "modified_by": "Administrator",
  "module": "Star Ecom",
  "name": "Product",
