@@ -5,7 +5,7 @@
 	</div>
   
 
-  <div class="mt-4 grid grid-cols-1 sm:grid-cols-5 gap-3" v-if="productsList">
+  <div class="mt-4 grid grid-cols-1 md:grid-cols-4 gap-3" v-if="productsList">
 	<ProductCard v-for="product in productsList" :key="product.name" :product="product" />
   </div>
 </template>

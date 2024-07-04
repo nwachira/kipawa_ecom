@@ -13,7 +13,9 @@
   "section_break_gilr",
   "images",
   "section_break_xkss",
-  "description"
+  "description",
+  "section_break_mreg",
+  "color"
  ],
  "fields": [
   {
@@ -59,11 +61,20 @@
    "label": "Preview Image",
    "options": "website_item",
    "reqd": 1
+  },
+  {
+   "fieldname": "section_break_mreg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "color",
+   "fieldtype": "Data",
+   "label": "Color"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-22 17:21:52.882996",
+ "modified": "2024-07-04 15:07:20.969042",
  "modified_by": "Administrator",
  "module": "Star Ecom",
  "name": "Product",

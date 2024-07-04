@@ -1,8 +1,8 @@
 app_name = "star_ecom"
 app_title = "Star Ecom"
-app_publisher = "BWH"
+app_publisher = "Bryan"
 app_description = "Ecommerce built on FrappeUI"
-app_email = "hussain@frappe.io"
+app_email = "info@unganishanetworks.com"
 app_license = "mit"
 # required_apps = []
 

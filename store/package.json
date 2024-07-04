@@ -9,6 +9,7 @@
     "copy-html-entry": "cp ../star_ecom/public/store/index.html ../star_ecom/www/store.html"
   },
   "dependencies": {
+    "@storefront-ui/vue": "^2.6.3",
     "feather-icons": "^4.28.0",
     "frappe-ui": "^0.1.62",
     "markdown-it": "^14.1.0",

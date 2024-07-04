@@ -1,5 +1,5 @@
 <template>
-    <div class="shadow-md rounded-2xl p-4 space-y-2 flex items-start justify-between flex-col">
+    <div class="shadow-md rounded p-4 space-y-2 flex items-start justify-between flex-col">
         <router-link :to="{
             name: 'ProductDetailsPage',
             params: {
@@ -12,7 +12,7 @@
             </div>
             <p class="text-xl font-bold text-gray-900">{{ formatCurrency(product.price, product.currency) }}</p>
         </router-link>
-        <Button @click="addProductToCart" variant="solid" size="2xl">
+        <Button @click="addProductToCart" variant="solid" size="md">
             <template #prefix>
                 <FeatherIcon class="h-5" name="shopping-cart" />
             </template>

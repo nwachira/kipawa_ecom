@@ -1,20 +1,20 @@
 {
  "actions": [],
- "allow_rename": 1,
- "autoname": "prompt",
- "creation": "2024-06-20 17:21:38.956547",
+ "autoname": "autoincrement",
+ "creation": "2024-07-03 15:39:20.442478",
  "doctype": "DocType",
+ "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "title",
+  "category",
   "image"
  ],
  "fields": [
   {
-   "fieldname": "title",
+   "fieldname": "category",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "group"
+   "label": "Category"
   },
   {
    "fieldname": "image",
@@ -24,11 +24,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-29 14:12:44.090953",
+ "modified": "2024-07-04 12:19:29.312416",
  "modified_by": "Administrator",
  "module": "Star Ecom",
- "name": "Product Category",
- "naming_rule": "Set by user",
+ "name": "Category",
+ "naming_rule": "Autoincrement",
  "owner": "Administrator",
  "permissions": [
   {

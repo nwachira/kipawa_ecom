@@ -1,23 +1,21 @@
 <template>
     <div>
         <div class=" ">
-            <Top/>
+            <Banner/>
         </div>
+        <div>
+            <Category/>
+        </div>
+
+       
         
         <div>
             <Products/>
 
         </div>
-        <div>
-            <CategoryCard/>
-        </div>
-
-        <div>
-            <BrandsCard/>
-        </div>
-        <div>
-            <Essential/>
-        </div>
+       
+       
+       
         <div>
             <Footer/>
         </div>
@@ -28,8 +26,9 @@
 </template>
 <script setup>
 import Products from "@/components/Products.vue";
-import Top from "@/components/Top.vue";
-import CategoryCard from "@/components/CategoryCard.vue";
+import Banner from "@/components/Banner.vue";
+
+import Category from "@/components/Categories.vue";
 import BrandsCard from "@/components/BrandsCard.vue";
 import Essential from "@/components/Essential.vue";
 import Footer from "@/components/Footer.vue";
