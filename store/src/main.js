@@ -1,4 +1,4 @@
-import './index.css'
+import './style.css'
 
 import { createApp, reactive } from 'vue'
 import router from './router'

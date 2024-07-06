@@ -76,31 +76,33 @@
   
   <script setup>
   import { Button } from 'frappe-ui';
-  import { createListResource } from 'frappe-ui';
+  import { createResource, createListResource } from 'frappe-ui';
   import { computed } from 'vue';
 
 
-  const bannerdoc = createListResource({
+  const bannerdoc = createResource({
+    url: 'star_ecom.api.get_banner',
     doctype: "Big Banner",
     fields: [ "title", "description", "image", "label"],
     auto: true
 
   })
   const bannerResource = computed(() => {
-    if (bannerdoc.list.data){
-      return bannerdoc.list.data;
+    if (bannerdoc.data){
+      return bannerdoc.data;
     }
   });
 
-  const smallBannerdoc = createListResource({
+  const smallBannerdoc = createResource({
+    url: 'star_ecom.api.small_banner',
     doctype: "Small Banner",
     fields: [ "title", "description", "image", "label"],
     auto: true
 
   })
   const smallBannerResource = computed(() => {
-    if (smallBannerdoc.list.data){
-      return smallBannerdoc.list.data;
+    if (smallBannerdoc.data){
+      return smallBannerdoc.data;
     }
   });
   

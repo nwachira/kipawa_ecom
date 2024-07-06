@@ -1,12 +1,13 @@
-module.exports = {
-  presets: [require('frappe-ui/src/utils/tailwind.config')],
-  content: [
-    './index.html',
-    './src/**/*.{vue,js,ts,jsx,tsx}',
-    './node_modules/frappe-ui/src/components/**/*.{vue,js,ts,jsx,tsx}',
-  ],
+// tailwind.config.js
+import { tailwindConfig } from '@storefront-ui/vue/tailwind-config';
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  presets: [tailwindConfig],
+  content: ['./index.html', './**/*.vue', './node_modules/@storefront-ui/vue/**/*.{js,mjs}'],
   theme: {
     extend: {},
   },
   plugins: [],
-}
+};
+

@@ -108,9 +108,9 @@
 
 <script setup>
 import {FeatherIcon, Badge, Button, Dialog, FormControl} from 'frappe-ui';
-import Search from '../components/Search.vue';
-import { inject, ref } from "vue";
 
+import { inject, ref } from "vue";
+import Search from '../components/Search.vue';
 
 // Example state for cart and favorites, replace or expand as needed
 const favoritesCount = ref(0); // Example reactive state, replace with actual logic

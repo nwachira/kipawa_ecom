@@ -16,7 +16,7 @@
             v-if="inputModel"
             type="button"
             aria-label="Reset search"
-            class="flex rounded-md focus-visible:outline focus-visible:outline-offset"
+            class="flex rounded-md focus-visible:outline focus-visible:outline-offset h-6 bg"
             @click="reset"
           >
             <SfIconCancel />
@@ -64,7 +64,7 @@ import { ref, watch } from 'vue';
 import { offset } from '@floating-ui/vue';
 import { watchDebounced } from '@vueuse/shared';
 import { unrefElement } from '@vueuse/core';
-import { createListResource } from 'frappe-ui';
+import { createListResource, createResource } from 'frappe-ui';
 import { useRouter } from 'vue-router';
 
 import {
@@ -190,15 +190,16 @@ interface Product {
   name: string;
   category: string;
 }
-const products = createListResource({
+const products = createResource({
+  url: 'star_ecom.api.get_products',
   doctype: "Product",
   fields: ["name", "price", "currency", "preview_image"],
   auto: true,
 });
 
 const mockAutocompleteRequest = async (searchTerm: string): Promise<{ highlight: string; rest: string; product: Product }[]> => {
-  if (products.list.data) {
-    const results = products.list.data.filter(product => product.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  if (products.data) {
+    const results = products.data.filter(product => product.name.toLowerCase().includes(searchTerm.toLowerCase()));
     return results.map(product => {
       const index = product.name.toLowerCase().indexOf(searchTerm.toLowerCase());
       const highlight = product.name.substring(0, index);

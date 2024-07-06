@@ -39,4 +39,5 @@ export const session = reactive({
   }),
   user: sessionUser(),
   isLoggedIn: computed(() => !!session.user),
+  isGuest: computed(() => session.user === 'Guest'),
 })

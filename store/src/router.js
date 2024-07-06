@@ -47,6 +47,10 @@ router.beforeEach(async (to, from, next) => {
   } catch (error) {
     isLoggedIn = false
   }
+  if(session.isGuest){
+    router.replace({name: "Home"});
+    return;
+  }
 
 	if (to.meta.requiresLogin && !isLoggedIn) {
 		// throw them to login page

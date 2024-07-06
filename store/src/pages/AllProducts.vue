@@ -1,98 +1,123 @@
 <template>
-    <div>
-      <div class="flex gap-8">
-        <div>
-         
-           
-          
-        </div>
-        <div v-if="productdoc" class="mt-4 grid grid-cols-1 md:grid-cols-4 gap-3 ml-15">
-
-       
-        <div class="shadow-md rounded p-4 space-y-2 flex items-start justify-between flex-col" v-for="product in productdoc">
-        <router-link :to="{
+  <div class="flex mb-4">
+    <Filters :class="{ 'm-8': true }" /> <!-- Example of scoped class -->
+  <div>
+    <div class="p-8 m-8 grid grid-cols-3 gap-4">
+      <div
+        v-for="product in productdoc"
+        :key="product.name"
+        class="border border-neutral-200 rounded-md hover:shadow-lg max-w-[300px]"
+      >
+        <SfLink
+          :href="{
             name: 'ProductDetailsPage',
             params: {
-                name: product.name
-            }
-        }" class="flex-grow">
-            <div>
-                <img :src="product.preview_image" alt="Product Preview Image">
-                <p class="text-base text-gray-800 font-medium mt-2">{{ product.name }}</p>
-            </div>
-            <p class="text-xl font-bold text-gray-900">{{ formatCurrency(product.price, product.currency) }}</p>
-        </router-link>
-        <Button @click="addProductToCart" variant="solid" size="md">
+              name: product.name,
+            },
+          }"
+          class="block"
+        >
+          <img
+            :src="product.preview_image"
+            alt="Great product"
+            class="block object-cover h-auto rounded-md aspect-square"
+            width="300"
+            height="300"
+          />
+        </SfLink>
+
+        <SfButton
+          variant="tertiary"
+          size="sm"
+          square
+          class="absolute bottom-0 right-0 mr-2 mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full"
+          aria-label="Add to wishlist"
+          @click="addProductToCart(product.name)"
+        >
+          <SfIconFavorite size="sm" />
+        </SfButton>
+
+        <div class="p-4 border-t border-neutral-200">
+          <SfLink
+            :href="{
+              name: 'ProductDetailsPage',
+              params: {
+                name: product.name,
+              },
+            }"
+            variant="secondary"
+            class="no-underline"
+          >
+            {{ product.name }}
+          </SfLink>
+          <div class="flex items-center pt-1">
+            <SfRating size="xs" :value="5" :max="5" />
+            <SfLink
+              :href="{
+                name: 'ProductDetailsPage',
+                params: {
+                  name: product.name,
+                },
+              }"
+              variant="secondary"
+              class="pl-1 no-underline"
+            >
+              <SfCounter size="xs">123</SfCounter>
+            </SfLink>
+          </div>
+          <span class="block pb-2 font-bold typography-text-lg">
+            {{ formatCurrency(product.price, product.currency) }}
+          </span>
+          <SfButton size="sm" @click="addProductToCart(product.name)">
             <template #prefix>
-                <FeatherIcon class="h-5" name="shopping-cart" />
+              <SfIconShoppingCart size="sm" />
             </template>
             Add to cart
-        </Button>
-    </div>
-</div>
-      </div>
-  
-      <div>
-        <h2>Pagination</h2>
+          </SfButton>
+        </div>
       </div>
     </div>
-  </template>
-  
-  <script setup>
-  import { formatCurrency } from "@/utils";
-  import { createDocumentResource, createListResource } from "frappe-ui";
-  import { Button, FeatherIcon } from "frappe-ui";
-  import markdownit from "markdown-it";
-  import { useToast } from "vue-toastification";
-  import { computed, watch, ref, inject } from "vue";
-  import { defineProps } from "vue";
-  import { useRoute } from "vue-router";
-  import Filters from "../components/Filter.vue";
-  import {
-    SfAccordionItem,
-    SfButton,
-    SfChip,
-    SfCheckbox,
-    SfCounter,
-    SfIconArrowBack,
-    SfIconChevronLeft,
-    SfIconCheck,
-    SfIconClose,
-    SfListItem,
-    SfRadio,
-    SfRating,
-    SfSelect,
-    SfThumbnail,
-  } from "@storefront-ui/vue";
-import Filter from "../components/Filter.vue";
-  
-  const products = createListResource({
-    doctype: "Product",
-    fields: ["name", "price", "currency", "preview_image"],
-    auto: true,
-  });
-  const productdoc = computed(() => {
-    if (products.list.data) {
-      return products.list.data;
-    } else {
-      return {};
-    }
-  });
-  
-  const route = useRoute();
-  const toast = useToast();
-  
-  const cart = inject("cart");
-  
-  const md = markdownit();
-  const cartDialogShown = ref(false);
-  
-  function addProductToCart(productName) {
-    cart.items.push({
-      product: productName,
-      qty: 1,
-    });
-    toast.success("Item added to cart!");
-  }
-  </script>
-  
+
+    <div>
+      <Pagination/>
+    </div>
+  </div>
+  </div>
+</template>
+
+<script setup>
+import { formatCurrency } from "@/utils";
+import { createResource } from "frappe-ui";
+import { useToast } from "vue-toastification";
+import { computed, ref, inject } from "vue";
+import { useRoute } from "vue-router";
+import Filters from "../components/Filter.vue";
+import Pagination from "../components/Pagination.vue";
+import {
+  SfLink,
+  SfIconShoppingCart,
+  SfIconFavorite,
+  SfButton,
+  SfRating,
+  SfCounter,
+  usePagination,
+} from "@storefront-ui/vue";
+
+const products = createResource({
+  url: "star_ecom.api.get_products",
+  doctype: "Product",
+  fields: ["name", "price", "currency", "preview_image", "description"],
+  auto: true,
+});
+
+const productdoc = computed(() => products.data || []);
+
+const route = useRoute();
+const toast = useToast();
+const cart = inject("cart");
+
+function addProductToCart(productName) {
+  cart.items.push({ product: productName, qty: 1 });
+  toast.success("Item added to cart!");
+}
+</script>
